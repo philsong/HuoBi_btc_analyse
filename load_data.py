@@ -38,9 +38,9 @@ def LoadCsvInPath(path,h5file=''):
     # they are not with id
     try:
         for f in csvs:
-            print('Processing ' + f)
-            table_name = f.split('.')[0].split('/')[-1]
+            table_name = 'trade_'+f.split('.')[0].split('/')[-1]
             df = LoadData(f)
+            print('Processing ' + f + ' with tablename: ' + table_name)
             df.to_hdf(h5file,table_name,append=True)
     except Exception,e:
         print e
@@ -55,7 +55,7 @@ def LoadAll2HDFStore(path,h5file=''):
     directories.append('/./')
     try:
         for d in directories:
-            LoadCsvInPath(path,h5file)
+            LoadCsvInPath(d,h5file)
     except Exception,e:
         print e
 
