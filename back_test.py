@@ -41,4 +41,7 @@ def do_train(hdf='/home/yacc/packages/btc-trade-result-history/btc_all.h5',    d
     plt.show()
 
 if __name__ == '__main__':
-    do_train()
+    if len(sys.argv) < 2:
+        do_train()  
+    else:
+        do_train(hdf=sys.argv[1])
