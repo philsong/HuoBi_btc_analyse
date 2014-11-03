@@ -18,22 +18,18 @@ def LoadData(filename):
         col_name = ['timestamp','type','amount','price']
     else:
         col_name = ['timestamp','type','amount','price','id']
-
     try:
         df = pd.read_csv(filename,names=col_name)
         time_index = df['timestamp'].apply(lambda t:datetime.datetime.fromtimestamp(t))
         df.index = time_index
-
     except Exception,e:
         print e
-
     return df
 
 def LoadCsvInPath(path,h5file=''):
     """
     """
     csvs = glob.glob(path+'/*.csv')
-
     # first do load single files to hdfstore
     # they are not with id
     try:
@@ -59,6 +55,10 @@ def LoadAll2HDFStore(path,h5file=''):
     except Exception,e:
         print e
 
+def preprocess_data(df):
+    """
+    """
+
 def usage():
     print "usage:"
     print sys.argv[0] +" path hdf5path"
@@ -68,5 +68,4 @@ if __name__ == '__main__':
     if len(sys.argv) < 3:
         usage()
         exit(-1)
-
     LoadAll2HDFStore(sys.argv[1],sys.argv[2])

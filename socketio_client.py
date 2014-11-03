@@ -1,3 +1,6 @@
+"""
+A socket_IO client
+"""
 from time import sleep
 from socketIO_client import SocketIO
 import json
@@ -25,7 +28,7 @@ def on_reconnect():
 
 def on_message(data):
     #requestIndex = data[0]['_id']
-#    print(requestIndex)
+    #print(requestIndex)
     print(data)
 
 def on_request(data):
